@@ -711,7 +711,7 @@
         const playPromise = document.querySelector('.hero__video').play();
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                if (error.name === 'NotAllowedError') document.querySelector("hero__overlay").classList.add("PSM");
+                document.querySelector("hero__overlay").classList.add("PSM");
             });
         }
     })();
