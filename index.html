@@ -510,7 +510,7 @@
       overflow-x: hidden;
     }
 
-    .PSM {
+    .LPM {
       background-image: url('iOS_LPM_Warning.png');
       background-repeat: no-repeat;
       background-color: black;
@@ -707,14 +707,21 @@
     function about() { slide2.classList.remove("invisible");slide1.classList.add("invisible");slide3.classList.add("invisible") }
     function tutoring() { slide3.classList.remove("invisible");slide2.classList.add("invisible");slide1.classList.add("invisible") }
     
-    (function checkLowPowerMode() {
-        const playPromise = document.querySelector('.hero__video').play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                document.querySelector("hero__overlay").classList.add("PSM");
-            });
-        }
-    })();
+    document.addEventListener('DOMContentLoaded', () => {
+      const playPromise = document.querySelector('.hero__video').play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("No iOS LowPowerMode Enabled")
+          })
+          .catch((error) => {
+            // Режим энергосбережения → оставляем заглушку, видео не показываем
+            console.log('Low Power Mode detected, keeping warning overlay', error.name);
+            document.querySelector('.hero__overlay').classList.add("LPM")
+          });
+      }
+    });
   </script>
 </body>
 </html>
