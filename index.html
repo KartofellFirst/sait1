@@ -699,6 +699,10 @@
     function main() { slide1.classList.remove("invisible");slide2.classList.add("invisible");slide3.classList.add("invisible") }
     function about() { slide2.classList.remove("invisible");slide1.classList.add("invisible");slide3.classList.add("invisible") }
     function tutoring() { slide3.classList.remove("invisible");slide2.classList.add("invisible");slide1.classList.add("invisible") }
+
+    document.querySelector("hero__video").addEventListener('suspend', () => {
+      alert("iosLPW")
+  });
   </script>
 </body>
 </html>
