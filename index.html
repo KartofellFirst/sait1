@@ -700,9 +700,44 @@
     function about() { slide2.classList.remove("invisible");slide1.classList.add("invisible");slide3.classList.add("invisible") }
     function tutoring() { slide3.classList.remove("invisible");slide2.classList.add("invisible");slide1.classList.add("invisible") }
 
-    document.querySelector("hero__video").addEventListener('suspend', () => {
-      alert("iosLPW")
-  });
+    // 1. Находим наш элемент с видео
+const video = document.querySelector('.hero__video');
+
+// 2. Флаг, который будет хранить состояние режима
+let isLowPowerMode = false;
+
+function checkLowPowerMode() {
+    // Пытаемся запустить видео так же, как вы делали это раньше
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            // Если получили ошибку, проверяем — это из-за энергосбережения?
+            if (error.name === 'NotAllowedError') {
+                console.log('Обнаружен Low Power Mode!');
+                isLowPowerMode = true;
+                
+                // --- ТВОИ ДЕЙСТВИЯ, ЕСЛИ РЕЖИМ ВКЛЮЧЁН ---
+                // Например, показать статичную картинку-заглушку
+                const heroSection = document.querySelector('.hero');
+                if (heroSection) {
+                    alert("ios LPM")
+                }
+                // Или скрыть кнопку play, если она появилась
+            }
+        });
+    }
+}
+
+// Дополнительная проверка через событие 'suspend' (страховка)
+video.addEventListener('suspend', () => {
+    console.log('Событие suspend: видео приостановлено системой');
+    isLowPowerMode = true;
+    // Здесь можно выполнить те же действия, что и выше
+});
+
+// Запускаем проверку, когда видео будет готово
+video.addEventListener('loadedmetadata', checkLowPowerMode);
   </script>
 </body>
 </html>
