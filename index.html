@@ -954,6 +954,26 @@
             //     }, 150);
             // });
 
+          // Блять, пожалуйста, закройся на айфоне, ебаный попап
+          document.body.addEventListener('touchstart', (e) => {
+              const popupDiv = getPopup();
+              if (popupDiv.style.visibility === 'visible') {
+                  let target = e.target;
+                  let isPaper = false;
+                  let isPopup = false;
+                  
+                  while (target && target !== document.body) {
+                      if (target.classList && target.classList.contains('paper')) isPaper = true;
+                      target = target.parentElement;
+                  }
+                  
+                  if (!isPaper) {
+                      popupDiv.style.opacity = '0';
+                      popupDiv.style.visibility = 'hidden';
+                  }
+              }
+          });
+
         })();
   </script>
 </body>
