@@ -918,8 +918,6 @@
                     popupDiv.style.visibility = 'visible';
                     popupDiv.style.cursor = "pointer";
                     updatePopupPosition(event, popupDiv);
-                    popupDiv.addEventListener("click", () => { popupDiv.style.opacity = '0';popupDiv.style.visibility = 'hidden'; })
-                    popupDiv.ontouchstart = () => { popupDiv.style.opacity = '0';popupDiv.style.visibility = 'hidden'; }; // на всякий случай
                 });
                 
                 paper.addEventListener('mousemove', (event) => {
@@ -934,6 +932,12 @@
                     popupDiv.style.opacity = '0';
                     popupDiv.style.visibility = 'hidden';
                 });
+
+              const popupDiv = getPopup();
+              popupDiv.addEventListener('click', () => {
+                  popupDiv.style.opacity = '0';
+                  popupDiv.style.visibility = 'hidden';
+              });
             });
             
             // Разбрасываем дипломы при открытии и при изменении размера окна (убрал из-за мобильных браузеров)
