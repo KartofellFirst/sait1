@@ -840,6 +840,16 @@
                 return popup;
             }
             
+            function isOverlap(paper1, paper2) {
+                const rect1 = paper1.getBoundingClientRect();
+                const rect2 = paper2.getBoundingClientRect();
+                
+                return !(rect1.right + 15 < rect2.left || 
+                        rect1.left > rect2.right + 15 || 
+                        rect1.bottom + 15 < rect2.top || 
+                        rect1.top > rect2.bottom + 15);
+            }
+            
             // Функция для случайного разбрасывания дипломов 
             function scatterDiplomas() {
                 if (!space) return;
@@ -847,26 +857,59 @@
                 const containerWidth = rect.width;
                 const containerHeight = rect.height;
                 
+                const paperWidth = 90;
+                const paperHeight = 116;
+                
+                const minX = -45;
+                const maxX = containerWidth - paperWidth + 45;
+                const minY = -40;
+                const maxY = containerHeight - paperHeight + 40;
+                
+                const maxAttempts = 500; 
+                
                 papers.forEach((paper, idx) => {
-                    const paperWidth = 116;
-                    const paperHeight = 90;
+                    let attempts = 0;
+                    let placed = false;
                     
-                    const minX = -45;
-                    const maxX = containerWidth - paperWidth + 45;
-                    const minY = -40;
-                    const maxY = containerHeight - paperHeight + 40;
+                    while (!placed && attempts < maxAttempts) {
+                        let leftPos = Math.random() * (maxX - minX) + minX;
+                        let topPos = Math.random() * (maxY - minY) + minY;
+                        const rotation = (Math.random() * 12 - 6).toFixed(1);
+                        
+                        paper.style.position = 'absolute';
+                        paper.style.left = leftPos + 'px';
+                        paper.style.top = topPos + 'px';
+                        paper.style.transform = `rotate(${rotation}deg)`;
+                        
+                        let overlap = false;
+                        for (let i = 0; i < idx; i++) {
+                            const prevPaper = papers[i];
+                            if (isOverlap(paper, prevPaper)) {
+                                overlap = true;
+                                break;
+                            }
+                        }
+                        
+                        if (!overlap) {
+                            placed = true;
+                            paper.style.zIndex = 1 + (idx % 5);
+                        }
+                        
+                        attempts++;
+                    }
                     
-                    let leftPos = Math.random() * (maxX - minX) + minX;
-                    let topPos = Math.random() * (maxY - minY) + minY;
-                    
-                    const rotation = (Math.random() * 12 - 6).toFixed(1);
-                    paper.style.position = 'absolute';
-                    paper.style.left = leftPos + 'px';
-                    paper.style.top = topPos + 'px';
-                    paper.style.transform = `rotate(${rotation}deg)`;
-                    paper.style.zIndex = 1 + (idx % 5);
+                    if (!placed) {
+                        let leftPos = Math.random() * (maxX - minX) + minX;
+                        let topPos = Math.random() * (maxY - minY) + minY;
+                        const rotation = (Math.random() * 12 - 6).toFixed(1);
+                        paper.style.left = leftPos + 'px';
+                        paper.style.top = topPos + 'px';
+                        paper.style.transform = `rotate(${rotation}deg)`;
+                        paper.style.zIndex = 1 + (idx % 5);
+                    }
                 });
             }
+      
             
             function updatePopupPosition(event, popupElement) {
                 let mouseX = event.clientX;
