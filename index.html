@@ -905,6 +905,7 @@
                 let popupImg = null;
                 
                 paper.addEventListener('mouseenter', (event) => {
+                    event.stopPropagation();
                     const popupDiv = getPopup();
                     if (!popupImg) {
                         popupImg = document.createElement('img');
@@ -931,20 +932,26 @@
                     popupDiv.style.visibility = 'hidden';
                 });
             });
+
+            window.addEventListener("click", () => {
+                    const popupDiv = getPopup();
+                    popupDiv.style.opacity = '0';
+                    popupDiv.style.visibility = 'hidden';
+            })
             
-            // Разбрасываем дипломы при открытии и при изменении размера окна
+            // Разбрасываем дипломы при открытии и при изменении размера окна (убрал из-за мобильных браузеров)
             document.getElementById("aboutBtn").addEventListener('click', () => {
                 scatterDiplomas();
                 setTimeout(scatterDiplomas, 100);
             });
             
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    scatterDiplomas();
-                }, 150);
-            });
+            // let resizeTimeout;
+            // window.addEventListener('resize', () => {
+            //     clearTimeout(resizeTimeout);
+            //     resizeTimeout = setTimeout(() => {
+            //         scatterDiplomas();
+            //     }, 150);
+            // });
 
         })();
   </script>
