@@ -917,9 +917,9 @@
                     popupDiv.style.opacity = '1';
                     popupDiv.style.visibility = 'visible';
                     popupDiv.style.cursor = "pointer";
-                    popupDiv.ontouchstart = "";
                     updatePopupPosition(event, popupDiv);
-                    popupDiv.addEventListener("click", () => { popupDiv.style.opacity = '1';popupDiv.style.visibility = 'visible'; })
+                    popupDiv.addEventListener("click", () => { popupDiv.style.opacity = '0';popupDiv.style.visibility = 'hidden'; })
+                    popupDiv.ontouchstart = () => { popupDiv.style.opacity = '0';popupDiv.style.visibility = 'hidden'; }; // на всякий случай
                 });
                 
                 paper.addEventListener('mousemove', (event) => {
