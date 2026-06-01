@@ -636,7 +636,7 @@
           <div class="contact-info">
             <h3>ПРОДвижение</h3>
             <div class="contact-detail">📍 ул. Мичуринская, 201/16</div>
-            <div class="contact-detail" style="color: white;text-decoration: underline">📞 +7 (999) 123-45-67</div>
+            <div class="contact-detail">📞 <a href="tel:+79991234567" style="color: white;text-decoration: underline">+7 (999) 123-45-67</a>a></div>
             <div class="contact-detail">🕒 Пн–Пт: 10:00–20:00</div>
             <a href="#" class="btn open-modal-trigger" style="margin-top: 15px;">ЗАПИСАТЬСЯ НА ПРОБНОЕ</a>
           </div>
@@ -719,8 +719,7 @@
             console.log("No iOS LowPowerMode Enabled")
           })
           .catch((error) => {
-            // Режим энергосбережения → оставляем заглушку, видео не показываем
-            console.log('Low Power Mode detected, keeping warning overlay', error.name);
+            console.log('Low Power Mode detected, setting up a warning overlay', error.name);
             document.querySelector('.hero__overlay').classList.add("LPM")
           });
       }
