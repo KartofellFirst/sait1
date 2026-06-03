@@ -752,6 +752,219 @@
         }
   
   </style>
+  <style>
+.schedule {
+  display: flex;
+  justify-content: space-around;
+  background: #111;
+  padding: 15px;
+  gap: 25px
+}
+
+.schedule .content {
+  gap: 17px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: center;
+}
+
+.schedule .content h4 {
+  color: #999
+}
+
+.calendar-wrapper {
+  background: #0a0a0a;
+  border-radius: 28px;
+  padding: 24px;
+  border: 1px solid #e9d5a3;
+  max-width: 50%;
+  min-width: 50%;
+  margin-left: 20px;
+}
+
+.calendar-wrapper h6 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.calendar-header .month-year {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e9d5a3;
+}
+
+.calendar-header button {
+  background: transparent;
+  border: 1px solid #e9d5a3;
+  color: #e9d5a3;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 36px;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.calendar-header button:hover {
+  background: #e9d5a3;
+  color: #000000;
+  border-color: #e9d5a3;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #b0b0b0;
+  text-transform: uppercase;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  background: #0f0f0f;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #ddd;
+  border: 1px solid transparent;
+}
+
+.calendar-day:hover {
+  background: #1a1a1a;
+  border-color: #e9d5a3;
+}
+
+.calendar-day.empty {
+  background: transparent;
+  cursor: default;
+  border-color: transparent;
+  color: #555;
+}
+
+.calendar-day.seminar {
+  background: #29d8ff;
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 0 8px rgba(41, 216, 255, 0.3);
+  border-color: #29d8ff;
+}
+
+.calendar-day.seminar:hover {
+  background: #5ce2ff;
+  transform: scale(0.96);
+  border-color: #e9d5a3;
+}
+
+.calendar-day.today {
+  border: 2px solid #e9d5a3;
+  color: #e9d5a3;
+  font-weight: 700;
+  background: #0f0f0f;
+}
+
+.calendar-day.today.seminar {
+  background: #29d8ff;
+  color: #000;
+  border: 2px solid #e9d5a3;
+}
+
+.seminar-tooltip {
+  position: fixed;
+  background: #0a0a0a;
+  border: 1px solid #29d8ff;
+  border-radius: 28px;
+  padding: 12px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  pointer-events: none;
+  color: #f0f0f0;
+  max-width: 250px;
+}
+
+.seminar-tooltip strong {
+  color: #29d8ff;
+  font-family: 'Oswald', sans-serif;
+}
+
+.schedule .content .button-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+  .calendar-wrapper h6 {
+    font-size: 20px;
+  }
+  .calendar-header .month-year {
+    font-size: 20px;
+  }
+  .calendar-wrapper {
+    padding: 16px;
+  }
+  .calendar-day {
+    font-size: 12px;
+  }
+  .calendar-weekdays {
+    font-size: 10px;
+  }
+  .calendar-header button {
+    padding: 4px 12px;
+    font-size: 15px;
+  }
+  .calendar-wrapper {
+    max-width: 100%;
+    margin: 0
+  }
+  .schedule {
+    flex-direction: column;
+    padding: 0 15px;
+    gap: 20px;
+  }
+  .schedule .content .button-wrapper  {
+    justify-content: center;
+  }
+  .schedule .content {
+    text-align: center
+  }
+}
+
+  </style>
 </head>
 <body>
   <header>
@@ -919,7 +1132,8 @@
       </div>
     </section>
     <section class="about ba">
-      <h2 class="section-title">НАШИ <span class="accent">ДО / ПОСЛЕ</span></h2>
+      <h2 class="section-title">ДО / <span class="accent">ПОСЛЕ</span></h2>
+      <!-- <h2 class="section-title">НАШИ <span class="accent">ДО / ПОСЛЕ</span></h2> -->
       <div class="ba slider">
         <div class="ba slide">
           <img src="BeforeAndAfter1.png" alt="BeforeAndAfter1">
@@ -971,7 +1185,17 @@
   </slide2>
 
   <slide3 class="slide invisible">
-    <h1>СЛАЙД №333333</h1>
+    <section class="schedule">
+      <div class="calendar-wrapper">
+        <h6>Расписание семинаров</h6>
+        <div class="calendar" id="seminarCalendar"></div>
+      </div>
+      <div class="content">
+        <h3>Мы проводим <span class="accent">семинары</span> несколько раз в году</h3>
+        <h4 id="seminarComment">Загрузка...</h4>
+        <div class="button-wrapper"><div class="btn open-modal-trigger">Подробнее</div></div>
+      </div>
+    </section>
   </slide3>
 
   <!-- Модальное окно записи -->
@@ -1253,6 +1477,175 @@
           });
 
         })();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      let seminarDates = new Map(); 
+      let seminarComment = '';
+      
+      const calendarEl = document.getElementById('seminarCalendar');
+      const commentEl = document.getElementById('seminarComment');
+      
+      let currentYear = new Date().getFullYear();
+      let currentMonth = new Date().getMonth(); // 0-11
+      
+      try {
+        const response = await fetch('seminars.json');
+        const data = await response.json();
+        
+        // Преобразуем [[dd, mm], ...] в Map с ключом "mm-dd"
+        data.dates.forEach(([day, month]) => {
+          const key = `${month}-${day}`;
+          seminarDates.set(key, { day, month });
+        });
+        
+        seminarComment = data.comment || 'Следите за расписанием!';
+        commentEl.textContent = seminarComment;
+      } catch (error) {
+        console.error('Ошибка загрузки seminars.json:', error);
+        commentEl.textContent = 'Расписание скоро появится...';
+      }
+      
+      function isSeminarDay(day, month) {
+        return seminarDates.has(`${month + 1}-${day}`);
+      }
+      
+      function renderCalendar() {
+        const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+        const startWeekday = firstDayOfMonth.getDay(); // 0 = воскресенье
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        
+        // Дни предыдущего месяца для заполнения
+        const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+        
+        let calendarHTML = `
+          <div class="calendar-header">
+            <button class="prev-month" ${currentMonth === 0 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''}>←</button>
+            <span class="month-year">${getMonthName(currentMonth)} ${currentYear}</span>
+            <button class="next-month" ${currentMonth === 11 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''}>→</button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>Вс</span><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span>
+          </div>
+          <div class="calendar-days">
+        `;
+        
+        // Пустые ячейки начала месяца
+        for (let i = 0; i < startWeekday; i++) {
+          const prevDate = prevMonthDays - startWeekday + i + 1;
+          calendarHTML += `<div class="calendar-day empty">${prevDate}</div>`;
+        }
+        
+        // Дни текущего месяца
+        const today = new Date();
+        const todayDate = today.getDate();
+        const todayMonth = today.getMonth();
+        const todayYear = today.getFullYear();
+        
+        for (let d = 1; d <= daysInMonth; d++) {
+          const isSeminar = isSeminarDay(d, currentMonth);
+          const isToday = (todayYear === currentYear && todayMonth === currentMonth && todayDate === d);
+          
+          let dayClass = 'calendar-day';
+          if (isSeminar) dayClass += ' seminar';
+          if (isToday) dayClass += ' today';
+          
+          calendarHTML += `<div class="${dayClass}" data-day="${d}" data-month="${currentMonth}">${d}</div>`;
+        }
+        
+        // Дополнительные пустые ячейки
+        const totalCells = startWeekday + daysInMonth;
+        const remainingCells = (7 - (totalCells % 7)) % 7;
+        for (let i = 1; i <= remainingCells; i++) {
+          calendarHTML += `<div class="calendar-day empty">${i}</div>`;
+        }
+        
+        calendarHTML += `</div>`;
+        calendarEl.innerHTML = calendarHTML;
+        
+        // Добавляем обработчики на дни
+        attachDayListeners();
+        
+        // Обработчики навигации
+        const prevBtn = document.querySelector('.prev-month');
+        const nextBtn = document.querySelector('.next-month');
+        
+        if (prevBtn && !prevBtn.disabled) {
+          prevBtn.addEventListener('click', () => changeMonth(-1));
+        }
+        if (nextBtn && !nextBtn.disabled) {
+          nextBtn.addEventListener('click', () => changeMonth(1));
+        }
+      }
+      
+      function attachDayListeners() {
+        const days = document.querySelectorAll('.calendar-day:not(.empty)');
+        days.forEach(day => {
+          day.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dayNum = parseInt(day.dataset.day);
+            const monthNum = parseInt(day.dataset.month);
+            
+            if (isSeminarDay(dayNum, monthNum)) {
+              showTooltip(day, dayNum, monthNum);
+            }
+          });
+        });
+      }
+      
+      let tooltip = null;
+      
+      function showTooltip(element, day, month) {
+        if (tooltip) tooltip.remove();
+        
+        const monthNames = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 
+                            'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+        
+        tooltip = document.createElement('div');
+        tooltip.className = 'seminar-tooltip';
+        tooltip.innerHTML = `
+          <strong>🎓 Семинар ${day} ${monthNames[month]}</strong><br>
+          📍 Живая встреча
+        `;
+        document.body.appendChild(tooltip);
+        
+        const rect = element.getBoundingClientRect();
+        let left = rect.left + window.scrollX + 20;
+        let top = rect.top + window.scrollY - 60;
+        
+        // Чтобы не вылезал за правый край
+        if (left + 250 > window.innerWidth) {
+          left = rect.left + window.scrollX - 260;
+        }
+        if (top < 0) top = rect.bottom + window.scrollY + 5;
+        
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+        
+        setTimeout(() => {
+          if (tooltip) {
+            tooltip.style.opacity = '0';
+            setTimeout(() => tooltip?.remove(), 200);
+            tooltip = null;
+          }
+        }, 3500);
+      }
+      
+      function changeMonth(delta) {
+        const newMonth = currentMonth + delta;
+        if (newMonth < 0 || newMonth > 11) return;
+        currentMonth = newMonth;
+        renderCalendar();
+      }
+      
+      function getMonthName(month) {
+        const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 
+                        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        return months[month];
+      }
+      
+      renderCalendar();
+    });
   </script>
 </body>
 </html>
