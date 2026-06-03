@@ -753,6 +753,7 @@
   
   </style>
   <style>
+
 .schedule {
   display: flex;
   justify-content: space-evenly;
@@ -881,7 +882,6 @@
 }
 
 .calendar-day.seminar:hover {
-  background: #5ce2ff;
   transform: scale(0.96);
   border-color: #e9d5a3;
 }
@@ -894,15 +894,15 @@
 }
 
 .calendar-day.today.seminar {
-  background: #29d8ff;
+  background: #e9d5a3;
   color: #000;
   border: 2px solid #e9d5a3;
 }
 
 .seminar-tooltip {
   position: fixed;
-  background: #0a0a0a;
-  border: 1px solid #29d8ff;
+  background: #222;
+  border: 3px dashed #e9d5a3;
   border-radius: 28px;
   padding: 12px 20px;
   font-family: 'Inter', sans-serif;
@@ -916,7 +916,7 @@
 }
 
 .seminar-tooltip strong {
-  color: #29d8ff;
+  color: #e9d5a3;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -926,7 +926,6 @@
   justify-content: right;
 }
 
-/* Адаптив */
 @media (max-width: 600px) {
   .calendar-wrapper h6 {
     font-size: 20px;
@@ -964,7 +963,7 @@
   }
 }
 
-  </style>
+    </style>
 </head>
 <body>
   <header>
