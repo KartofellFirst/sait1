@@ -387,6 +387,9 @@
       max-width: 420px;
       width: 90%;
       position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     .close-modal {
       position: absolute;
@@ -397,26 +400,63 @@
       color: #aaa;
       cursor: pointer;
     }
-    .modal h2 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    input, select {
+    .modal-content div {
+      display: flex;
       width: 100%;
-      padding: 14px;
-      background: #0f0f0f;
-      border: 1px solid #333;
-      border-radius: 6px;
-      color: white;
-      font-size: 1rem;
+      position: relative;
+      justify-content: space-between;
+      flex-grow: 1;
+      height: auto;
+      align-items: center
     }
-    .form-btn {
+    .modal-content div img {
       width: 100%;
-      padding: 14px;
-      font-size: 1rem;
+      height: auto;
+      position: relative;
+      top: 20px;
+      left: -20px;
+      object-fit: contain;
+      transition: all .5s ease-in-out;
+      animation: idle 2s infinite ease;
+    }
+    .modal-content div .icons img:hover {
+      opacity: 0.8;
+    }
+    .modal-content div .icons {
+      width: 30%;
+      aspect-ratio: 1/2;
+      height: 10%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      top: 20px;
+      cursor: pointer;
+    }
+    .modal-content div .icons img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 90%;
+      height: 45%;
+      position: relative;
+      object-fit: fill;
+      left: 0;
+      top: 0;
+      animation: spin 4s infinite linear;
+      border: 3px dotted white;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes idle {
+      from { transform: scale(0.8) rotate(0); opacity: 0.8; }
+      25% { transform: scale(0.9) rotate(-5deg); opacity: 1; }
+      50% { transform: scale(0.8) rotate(0deg); opacity: 0.9; }
+      75% { transform: scale(0.9) rotate(5deg); opacity: 1; }
+      to { transform: scale(0.8) rotate(0deg); opacity: 0.8; }
     }
 
     @media (max-width: 768px) {
@@ -1285,24 +1325,19 @@
     </section>
   </slide3>
 
-  <!-- Модальное окно записи -->
   <div class="modal" id="signupModal">
     <div class="modal-content">
       <button class="close-modal" id="closeModalBtn">&times;</button>
       <h2><span class="accent">Напишите</span> нам</h2>
-      <form id="signupForm" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.'); this.reset(); document.getElementById('signupModal').classList.remove('active');">
-        <div class="form-group"><input type="text" placeholder="Ваше имя" required></div>
-        <div class="form-group"><input type="tel" placeholder="Телефон" required></div>
-        <div class="form-group">
-          <select required>
-            <option value="" disabled selected>Выберите формат</option>
-            <option>Тренажёрный зал</option>
-            <option>Функциональный тренинг</option>
-            <option>Смешанный формат</option>
-          </select>
+      <p class="section-subtitle" style="margin: 0; text-align: left; color: #f0f0f0">Выйдем на связь в течении часа</p>
+      <div>
+        <img src="dropUsALine.png">
+        <div class="icons">
+          <img src="telegram_icon.png" onclick="window.location = 'https://telegram.org'">
+          <img src="whatsapp_icon.png" onclick="window.location = 'https://whatsapp.com'">
         </div>
-        <button type="submit" class="btn form-btn">ОТПРАВИТЬ</button>
-      </form> 
+      </div>
+
     </div>
   </div>
 
